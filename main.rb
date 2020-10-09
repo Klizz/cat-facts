@@ -11,7 +11,7 @@ url = 'https://api.thecatapi.com/v1/images/search'
 uri = URI(url)
 response = Net::HTTP.get(uri)
 body = JSON.parse(response)
-puts body
+puts body[0]["url"]
 
 while session = server.accept
   request = session.gets
@@ -20,7 +20,7 @@ while session = server.accept
   session.print "HTTP/1.1 200\r\n" # 1
   session.print "Content-Type: json\r\n" # 2
   session.print "\r\n" # 3
-  session.print body["text"] #4
+  session.print body[0]["url"] #4
 
   session.close
 end
